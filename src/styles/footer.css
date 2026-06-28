@@ -1,0 +1,43 @@
+.site-footer { background: var(--footer-bg); color: #D1D5DB; padding: 3rem 2rem 1.5rem; }
+.footer-inner { max-width: 1280px; margin: 0 auto; display: flex; gap: 3rem; flex-wrap: wrap; }
+.footer-left { flex: 1.2; min-width: 200px; }
+.footer-logo { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem; }
+.footer-logo-icon {
+  width: 32px; height: 32px; background: var(--primary);
+  display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.9rem;
+}
+.footer-logo-text { font-family: var(--font-display); font-weight: 700; font-size: 1rem; color: #fff; }
+.footer-desc { font-size: 0.85rem; color: #9CA3AF; line-height: 1.6; max-width: 280px; }
+.footer-col { min-width: 140px; }
+.footer-col-title {
+  font-family: var(--font-display); font-weight: 600; font-size: 0.85rem;
+  color: #fff; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;
+}
+.footer-col ul li { margin-bottom: 0.5rem; }
+.footer-col ul li a, .footer-col ul li { font-size: 0.85rem; color: #9CA3AF; transition: color 0.2s; }
+.footer-col ul li a:hover { color: var(--accent-light); }
+.footer-social { display: flex; gap: 0.75rem; margin-bottom: 0.5rem; }
+.footer-social a {
+  width: 34px; height: 34px; background: rgba(255,255,255,0.08);
+  display: flex; align-items: center; justify-content: center;
+  color: #9CA3AF; transition: all 0.2s;
+}
+.footer-social a:hover { background: var(--primary); color: #fff; }
+.footer-bottom {
+  max-width: 1280px; margin: 1rem auto 0;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;
+  padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1);
+}
+.footer-slogan { font-family: var(--font-display); font-size: 0.9rem; color: var(--accent-light); font-weight: 500; }
+.footer-copy { font-size: 0.8rem; color: #6B7280; }
+
+.whatsapp-float {
+  position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 900;
+  width: 56px; height: 56px; background: #25D366;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 1.7rem; box-shadow: 0 4px 16px rgba(37,211,102,0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+  animation: waFloat 2s ease-in-out infinite alternate;
+}
+.whatsapp-float:hover { transform: scale(1.08); box-shadow: 0 6px 24px rgba(37,211,102,0.5); }
+@keyframes waFloat { from { transform: translateY(0); } to { transform: translateY(-5px); } }

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portal do Instrumentador</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a href="#home" class="logo" data-nav="home">
+        <div class="logo-icon"><i class="fas fa-hand-holding-medical"></i></div>
+        <div class="logo-text">Portal do <span>Instrumentador</span></div>
+      </a>
+      <nav class="nav-center">
+        <a href="#empresas" class="nav-link" data-page="empresas">Empresas</a>
+        <a href="#instrumentadores" class="nav-link" data-page="instrumentadores">Instrumentadores</a>
+        <a href="#cursos" class="nav-link" data-page="cursos">Cursos e Mentorias</a>
+        <a href="#noticias" class="nav-link" data-page="noticias">Notícias</a>
+      </nav>
+      <div class="nav-right">
+        <div class="theme-toggle" id="themeToggle" title="Alternar tema">
+          <div class="knob"><i class="fas fa-sun" id="themeIcon"></i></div>
+        </div>
+        <button class="btn btn-outline" id="btnLogin">Fazer Login</button>
+        <button class="btn btn-primary" id="btnRegister">Cadastrar-se</button>
+        <div class="hamburger" id="hamburger">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#empresas" class="nav-link" data-page="empresas" data-mobile>Empresas</a>
+    <a href="#instrumentadores" class="nav-link" data-page="instrumentadores" data-mobile>Instrumentadores</a>
+    <a href="#cursos" class="nav-link" data-page="cursos" data-mobile>Cursos e Mentorias</a>
+    <a href="#noticias" class="nav-link" data-page="noticias" data-mobile>Notícias</a>
+    <div class="mobile-actions">
+      <div class="theme-toggle" id="themeToggleMobile" title="Alternar tema">
+        <div class="knob"><i class="fas fa-sun"></i></div>
+      </div>
+      <button class="btn btn-outline" data-action="login">Fazer Login</button>
+      <button class="btn btn-primary" data-action="register">Cadastrar-se</button>
+    </div>
+  </div>
+
+  <!-- PAGES -->
+  <main id="app">
+
+    <!-- HOME -->
+    <section class="page active" id="page-home">
+      <div class="hero-section">
+        <div class="carousel-bg" data-carousel="home"></div>
+        <div class="carousel-overlay"></div>
+        <div class="hero-content">
+          <div class="hero-left">
+            <div class="hero-text-carousel" data-hero-text="home"></div>
+            <div class="hero-stats">
+              <div class="stat-item"><div class="stat-number" data-count="1200">0</div><div class="stat-label">Instrumentadores cadastrados</div></div>
+              <div class="stat-item"><div class="stat-number" data-count="500">0</div><div class="stat-label">Vagas preenchidas</div></div>
+              <div class="stat-item"><div class="stat-number" data-count="98" data-suffix="%">0</div><div class="stat-label">De satisfação</div></div>
+            </div>
+          </div>
+          <div class="hero-panel">
+            <div class="hero-panel-title">Cadastre-se gratuitamente</div>
+            <button class="panel-btn" data-register="empresa"><i class="fas fa-building"></i>Cadastrar Empresa</button>
+            <button class="panel-btn" data-register="instrumentador"><i class="fas fa-user-md"></i>Cadastrar Instrumentador</button>
+            <button class="panel-btn" data-register="escola"><i class="fas fa-graduation-cap"></i>Cadastrar Escola / Mentoria</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INSTRUMENTADORES -->
+    <section class="page" id="page-instrumentadores">
+      <div class="hero-section">
+        <div class="carousel-bg" data-carousel="inst"></div>
+        <div class="carousel-overlay overlay-teal"></div>
+        <div class="hero-content">
+          <div class="hero-left">
+            <div class="hero-text-carousel" data-hero-text="inst"></div>
+            <div class="hero-stats">
+              <div class="stat-item"><div class="stat-number" data-count="850">0</div><div class="stat-label">Instrumentadores ativos</div></div>
+              <div class="stat-item"><div class="stat-number" data-count="120">0</div><div class="stat-label">Hospitais parceiros</div></div>
+              <div class="stat-item"><div class="stat-number" data-count="95" data-suffix="%">0</div><div class="stat-label">Match em até 48h</div></div>
+            </div>
+          </div>
+          <div class="hero-panel">
+            <div class="hero-panel-title">Junte-se à rede</div>
+            <button class="panel-btn" data-register="empresa"><i class="fas fa-building"></i>Cadastrar Empresa</button>
+            <button class="panel-btn" data-register="instrumentador"><i class="fas fa-user-md"></i>Cadastrar Instrumentador</button>
+            <button class="panel-btn" data-register="escola"><i class="fas fa-graduation-cap"></i>Cadastrar Escola / Mentoria</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EMPRESAS -->
+    <section class="page" id="page-empresas">
+      <div class="hero-section">
+        <div class="carousel-bg" data-carousel="emp"></div>
+        <div class="carousel-overlay overlay-blue"></div>
+        <div class="hero-content">
+          <div class="hero-left">
+            <div class="hero-text-carousel" data-hero-text="emp"></div>
+            <div class="hero-stats">
+              <div class="stat-item"><div class="stat-number" data-count="35">0</div><div class="stat-label">Empresas de OPME parceiras</div></div>
+              <div class="stat-item"><div class="stat-number" data-count="2400">0</div><div class="stat-label">Cirurgias suportadas</div></div>
+              <div class="stat-item"><div class="stat-number" data-count="99" data-suffix="%">0</div><div class="stat-label">Uptime da plataforma</div></div>
+            </div>
+          </div>
+          <div class="hero-panel">
+            <div class="hero-panel-title">Impulsione sua empresa</div>
+            <button class="panel-btn" data-register="empresa"><i class="fas fa-building"></i>Cadastrar Empresa</button>
+            <button class="panel-btn" data-register="instrumentador"><i class="fas fa-user-md"></i>Cadastrar Instrumentador</button>
+            <button class="panel-btn" data-register="escola"><i class="fas fa-graduation-cap"></i>Cadastrar Escola / Mentoria</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CURSOS -->
+    <section class="page" id="page-cursos">
+      <div class="hero-section">
+        <div class="carousel-bg" data-carousel="cur"></div>
+        <div class="carousel-overlay overlay-mixed"></div>
+        <div class="hero-content">
+          <div class="hero-left">
+            <div class="hero-text-carousel" data-hero-text="cur"></div>
+            <div class="hero-stats">
+              <div class="stat-item"><div class="stat-number" data-count="45">0</div><div class="stat-label">Instituições parceiras</div></div>
+              <div class="stat-item"><div class="stat-number" data-count="3200">0</div><div class="stat-label">Alunos formados</div></div>
+              <div class="stat-item"><div class="stat-number" data-count="97" data-suffix="%">0</div><div class="stat-label">Aprovação no mercado</div></div>
+            </div>
+          </div>
+          <div class="hero-panel">
+            <div class="hero-panel-title">Forme-se com excelência</div>
+            <button class="panel-btn" data-register="empresa"><i class="fas fa-building"></i>Cadastrar Empresa</button>
+            <button class="panel-btn" data-register="instrumentador"><i class="fas fa-user-md"></i>Cadastrar Instrumentador</button>
+            <button class="panel-btn" data-register="escola"><i class="fas fa-graduation-cap"></i>Cadastrar Escola / Mentoria</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOTICIAS -->
+    <section class="page" id="page-noticias">
+      <div class="noticias-container">
+        <div class="section-heading">Instrumentadores mais bem avaliados</div>
+        <div class="section-subheading">Profissionais destaque pela qualidade do serviço prestado</div>
+        <div class="cards-grid" id="cardsInst"></div>
+        <div class="noticias-divider"></div>
+        <div class="section-heading">Empresas mais bem avaliadas</div>
+        <div class="section-subheading">Empresas reconhecidas pelos instrumentadores que prestaram serviço</div>
+        <div class="cards-grid" id="cardsEmp"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- LOGIN MODAL -->
+  <div class="modal-overlay" id="modalLogin">
+    <div class="modal-box">
+      <button class="modal-close" data-close-modal><i class="fas fa-times"></i></button>
+      <div class="modal-step" id="loginStep1">
+        <div class="modal-title">Fazer Login</div>
+        <div class="modal-type-btns">
+          <button class="modal-type-btn" data-login-type="empresa"><i class="fas fa-building"></i>Entrar como Empresa</button>
+          <button class="modal-type-btn" data-login-type="instrumentador"><i class="fas fa-user-md"></i>Entrar como Instrumentador</button>
+        </div>
+      </div>
+      <form class="modal-form" id="loginFormEmpresa" data-form="login-empresa">
+        <div class="form-back" data-back="login"><i class="fas fa-arrow-left"></i> Voltar</div>
+        <div class="modal-title">Login — Empresa</div>
+        <div class="form-group"><label class="form-label">CNPJ</label><input class="form-input" type="text" placeholder="00.000.000/0000-00" data-mask="cnpj" maxlength="18" /></div>
+        <div class="form-group"><label class="form-label">Senha</label><input class="form-input" type="password" placeholder="Sua senha" /></div>
+        <button type="button" class="btn btn-primary btn-full" data-submit-login>Entrar</button>
+      </form>
+      <form class="modal-form" id="loginFormInst" data-form="login-inst">
+        <div class="form-back" data-back="login"><i class="fas fa-arrow-left"></i> Voltar</div>
+        <div class="modal-title">Login — Instrumentador</div>
+        <div class="form-group"><label class="form-label">CPF</label><input class="form-input" type="text" placeholder="000.000.000-00" data-mask="cpf" maxlength="14" /></div>
+        <div class="form-group"><label class="form-label">Senha</label><input class="form-input" type="password" placeholder="Sua senha" /></div>
+        <button type="button" class="btn btn-primary btn-full" data-submit-login>Entrar</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- REGISTER MODAL -->
+  <div class="modal-overlay" id="modalRegister">
+    <div class="modal-box">
+      <button class="modal-close" data-close-modal><i class="fas fa-times"></i></button>
+      <div class="modal-step" id="regStep1">
+        <div class="modal-title">Cadastrar-se</div>
+        <div class="modal-type-btns">
+          <button class="modal-type-btn" data-reg-type="empresa"><i class="fas fa-building"></i>Cadastrar Empresa</button>
+          <button class="modal-type-btn" data-reg-type="instrumentador"><i class="fas fa-user-md"></i>Cadastrar Instrumentador</button>
+          <button class="modal-type-btn" data-reg-type="escola"><i class="fas fa-graduation-cap"></i>Cadastrar Escola / Mentoria</button>
+        </div>
+      </div>
+      <form class="modal-form" id="regFormEmpresa" data-form="reg-empresa">
+        <div class="form-back" data-back="register"><i class="fas fa-arrow-left"></i> Voltar</div>
+        <div class="modal-title">Cadastro — Empresa</div>
+        <div class="form-group"><label class="form-label">CNPJ</label><input class="form-input" type="text" placeholder="00.000.000/0000-00" data-mask="cnpj" maxlength="18" /></div>
+        <div class="form-group"><label class="form-label">Senha</label><input class="form-input" type="password" placeholder="Crie uma senha" /></div>
+        <div class="form-group"><label class="form-label">Confirmar Senha</label><input class="form-input" type="password" placeholder="Confirme a senha" /></div>
+        <button type="button" class="btn btn-primary btn-full" data-submit-register>Cadastrar</button>
+      </form>
+      <form class="modal-form" id="regFormInst" data-form="reg-inst">
+        <div class="form-back" data-back="register"><i class="fas fa-arrow-left"></i> Voltar</div>
+        <div class="modal-title">Cadastro — Instrumentador</div>
+        <div class="form-group"><label class="form-label">CPF</label><input class="form-input" type="text" placeholder="000.000.000-00" data-mask="cpf" maxlength="14" /></div>
+        <div class="form-group"><label class="form-label">Senha</label><input class="form-input" type="password" placeholder="Crie uma senha" /></div>
+        <div class="form-group"><label class="form-label">Confirmar Senha</label><input class="form-input" type="password" placeholder="Confirme a senha" /></div>
+        <button type="button" class="btn btn-primary btn-full" data-submit-register>Cadastrar</button>
+      </form>
+      <form class="modal-form" id="regFormEscola" data-form="reg-escola">
+        <div class="form-back" data-back="register"><i class="fas fa-arrow-left"></i> Voltar</div>
+        <div class="modal-title">Cadastro — Escola / Mentoria</div>
+        <div class="form-group"><label class="form-label">CNPJ</label><input class="form-input" type="text" placeholder="00.000.000/0000-00" data-mask="cnpj" maxlength="18" /></div>
+        <div class="form-group"><label class="form-label">Nome da Instituição</label><input class="form-input" type="text" placeholder="Nome da escola ou programa" /></div>
+        <div class="form-group"><label class="form-label">Senha</label><input class="form-input" type="password" placeholder="Crie uma senha" /></div>
+        <button type="button" class="btn btn-primary btn-full" data-submit-register>Cadastrar</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <div class="footer-logo">
+          <div class="footer-logo-icon"><i class="fas fa-hand-holding-medical"></i></div>
+          <div class="footer-logo-text">Portal do Instrumentador</div>
+        </div>
+        <p class="footer-desc">Conectando profissionais e empresas da área cirúrgica com agilidade, segurança e transparência. A maior plataforma do setor de OPME no Brasil.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Redes Sociais</div>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Parceiros</div>
+        <ul>
+          <li>Hospital Sírio-Libanês</li>
+          <li>Hospital Samaritano</li>
+          <li>Hospital BP</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Recursos</div>
+        <ul>
+          <li><a href="#">Política de Privacidade</a></li>
+          <li><a href="#">Termos de Serviço</a></li>
+          <li><a href="#">Newsletter</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-slogan">Salvando Vidas e Gerando Conexões</div>
+      <div class="footer-copy">Todos os direitos reservados &copy; 2025 Portal do Instrumentador</div>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP -->
+  <a href="https://wa.me/5511999999999" target="_blank" class="whatsapp-float" aria-label="Suporte via WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

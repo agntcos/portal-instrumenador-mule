@@ -1,0 +1,40 @@
+:root {
+  --primary: #0F766E;
+  --primary-dark: #0D655E;
+  --accent: #0EA5E9;
+  --accent-light: #38BDF8;
+  --bg: #FFFFFF;
+  --bg-alt: #F9FAFB;
+  --text: #1F2937;
+  --text-secondary: #4B5563;
+  --text-muted: #9CA3AF;
+  --border-light: #E5E7EB;
+  --shadow: 0 2px 8px rgba(0,0,0,0.06);
+  --shadow-hover: 0 8px 24px rgba(0,0,0,0.12);
+  --header-shadow: 0 1px 8px rgba(14,165,233,0.10);
+  --radius: 0px;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --footer-bg: #1a1a1a;
+  --modal-bg: #FFFFFF;
+  --card-bg: #FFFFFF;
+  --input-bg: #F9FAFB;
+  --input-border: #D1D5DB;
+  --switch-bg: #D1D5DB;
+}
+
+html.dark {
+  --bg: #0F1419;
+  --bg-alt: #1A2332;
+  --text: #F3F4F6;
+  --text-secondary: #D1D5DB;
+  --text-muted: #6B7280;
+  --border-light: #374151;
+  --shadow: 0 2px 8px rgba(0,0,0,0.3);
+  --shadow-hover: 0 8px 24px rgba(0,0,0,0.5);
+  --modal-bg: #1A2332;
+  --card-bg: #1A2332;
+  --input-bg: #0F1419;
+  --input-border: #374151;
+  --switch-bg: #374151;
+}
