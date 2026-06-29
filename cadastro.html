@@ -104,6 +104,18 @@ ul{list-style:none}
 .cat-card .cat-check{width:22px;height:22px;border:2px solid var(--input-bdr);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:transparent;transition:all .2s;font-size:.75rem}
 .cat-card.selected .cat-check{background:var(--pri);border-color:var(--pri);color:#fff}
 
+/* ═══ REGION DROPDOWN ═══ */
+.region-select{width:100%;padding:.75rem 1rem;background:var(--input-bg);border:1.5px solid var(--input-bdr);font-size:.95rem;font-family:var(--fb);color:var(--txt);outline:none;transition:border-color .2s;cursor:pointer}
+.region-select:focus{border-color:var(--pri)}
+.region-select:disabled{opacity:.5;cursor:not-allowed}
+
+/* ═══ ADD CATEGORY PROMPT ═══ */
+.add-cat-prompt{background:var(--bg-alt);border:1.5px solid var(--border);padding:1.5rem;margin-top:1.5rem;text-align:center}
+.add-cat-prompt p{font-size:.95rem;color:var(--txt);margin-bottom:1rem;font-weight:500}
+.add-cat-btns{display:flex;gap:.75rem;justify-content:center}
+.add-cat-btns .btn{min-width:120px}
+.limit-msg{background:rgba(239,68,68,.08);border:1.5px solid #EF4444;color:#DC2626;padding:.75rem 1rem;font-size:.85rem;margin-top:1rem;text-align:center}
+
 /* ═══ PIN INPUT ═══ */
 .pin-row{display:flex;gap:.75rem;justify-content:center;margin:2rem 0 1.5rem}
 .pin-box{width:56px;height:64px;background:var(--input-bg);border:2px solid var(--input-bdr);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:1.8rem;font-weight:700;color:var(--txt);transition:border-color .2s}
@@ -171,6 +183,12 @@ ul{list-style:none}
 /* ═══ LOGGED AREA ═══ */
 .logged-area{display:none;padding-top:64px;min-height:100vh}
 .logged-area.active{display:block}
+.logged-header{background:#fff;border-bottom:1px solid var(--border);padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between}
+.logged-header-inner{max-width:1280px;margin:0 auto;width:100%;display:flex;align-items:center;justify-content:space-between}
+.logged-user{display:flex;align-items:center;gap:1rem}
+.logged-avatar{width:48px;height:48px;border-radius:50%;background:var(--pri);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.2rem}
+.logout-btn{padding:.5rem 1rem;border:1.5px solid var(--pri);color:var(--pri);font-weight:600;font-size:.85rem;transition:all .2s}
+.logout-btn:hover{background:var(--pri);color:#fff}
 .logged-hero{background:linear-gradient(135deg,var(--pri),var(--acc));padding:3rem 2rem;color:#fff;text-align:center}
 .logged-hero h1{font-family:var(--fd);font-size:1.8rem;font-weight:700;margin-bottom:.5rem}
 .logged-hero p{opacity:.85;font-size:1rem}
@@ -180,6 +198,21 @@ ul{list-style:none}
 .logged-card h3{font-family:var(--fd);font-size:1rem;font-weight:600;margin-bottom:.5rem}
 .logged-card p{font-size:.85rem;color:var(--txt2)}
 .logged-card .card-icon{width:44px;height:44px;background:rgba(15,118,110,.08);display:flex;align-items:center;justify-content:center;color:var(--pri);font-size:1.2rem;margin-bottom:1rem}
+
+@media(min-width:769px){
+  .logged-header{position:relative}
+  .logged-header-inner{display:flex;justify-content:flex-end;align-items:center;gap:1rem}
+  .logged-user{order:2}
+  .logout-btn{order:1}
+}
+@media(max-width:768px){
+  .logged-header{padding:.75rem 1rem}
+  .logged-header-inner{flex-direction:row-reverse}
+  .logged-user{order:1;gap:.5rem}
+  .logged-avatar{width:40px;height:40px;font-size:1rem}
+  .logout-btn{order:2;padding:.4rem .8rem;font-size:.8rem}
+  .logged-hero{margin-top:0}
+}
 
 /* ═══ FOOTER ═══ */
 .site-footer{background:var(--footer-bg);color:#D1D5DB;padding:2rem}
@@ -283,20 +316,28 @@ ul{list-style:none}
 
   <!-- ══════════ STEP 5: SUBCATEGORIES ══════════ -->
   <div class="step" data-step="5">
-    <button class="back-btn" onclick="goStep(4)"><i class="fas fa-arrow-left"></i> Voltar</button>
+    <button class="back-btn" onclick="goBackFromSubcats()"><i class="fas fa-arrow-left"></i> Voltar</button>
     <div class="step-title" id="subcatTitle">Subcategorias</div>
     <div class="step-desc">Escolha os procedimentos que mais se encaixam com o seu perfil.</div>
     <div class="cat-grid" id="subcatGrid"></div>
     <div class="bottom-bar">
       <button class="help-btn"><i class="fas fa-question"></i></button>
-      <button class="btn btn-primary" onclick="goStep(6)">Continuar</button>
+      <button class="btn btn-primary" onclick="showAddCategoryPrompt()">Continuar</button>
+    </div>
+    <div class="add-cat-prompt" id="addCatPrompt" style="display:none">
+      <p>Deseja incluir outra categoria de serviço?</p>
+      <div class="add-cat-btns">
+        <button class="btn btn-outline" onclick="addAnotherCategory(false)">Não quero</button>
+        <button class="btn btn-primary" onclick="addAnotherCategory(true)">Eu quero</button>
+      </div>
+      <div class="limit-msg" id="limitMsg" style="display:none">Você excedeu o limite de 3 categorias. Remova uma para adicionar outra.</div>
     </div>
   </div>
 
   <!-- ══════════ STEP 6: LOCATION ══════════ -->
   <div class="step" data-step="6">
     <button class="back-btn" onclick="goStep(5)"><i class="fas fa-arrow-left"></i> Voltar</button>
-    <div class="step-title">Informações pessoais</div>
+    <div class="step-title">Onde você mora?</div>
     <div class="step-desc">Preencha o nome e o CEP abaixo para continuar.</div>
     <div class="field">
       <label class="field-label">Nome</label>
@@ -327,6 +368,12 @@ ul{list-style:none}
       <div style="display:grid;grid-template-columns:2fr 1fr;gap:.75rem">
         <div class="field"><label class="field-label">Cidade</label><input class="field-input" id="cepCity" readonly style="opacity:.8"/></div>
         <div class="field"><label class="field-label">UF</label><input class="field-input" id="cepState" readonly style="opacity:.8"/></div>
+      </div>
+      <div class="field">
+        <label class="field-label">Região</label>
+        <select class="region-select" id="regionSelect" disabled>
+          <option value="">Selecione a região</option>
+        </select>
       </div>
       <div class="field"><label class="field-label">Número</label>
         <div class="field-row">
@@ -418,22 +465,36 @@ ul{list-style:none}
     <!-- CNPJ/MEI path -->
     <div id="meiFields" style="display:none">
       <div class="step-title">Dados da empresa (MEI)</div>
-      <div class="step-desc">Complete as informações do seu CNPJ.</div>
-      <div class="field">
-        <label class="field-label">Razão Social</label>
-        <div class="field-row"><span class="field-icon"><i class="fas fa-building"></i></span><input class="field-input" type="text" id="inputRazao" placeholder="Razão social"/></div>
+      <div class="step-desc">Buscando informações do CNPJ na Receita Federal...</div>
+      <div id="cnpjLoading" style="text-align:center;padding:2rem 0;color:var(--pri)">
+        <i class="fas fa-spinner fa-spin" style="font-size:2rem"></i>
+        <p style="margin-top:1rem;font-size:.9rem">Carregando dados...</p>
       </div>
-      <div class="field">
-        <label class="field-label">Nome Fantasia</label>
-        <div class="field-row"><span class="field-icon"><i class="fas fa-store"></i></span><input class="field-input" type="text" id="inputFantasia" placeholder="Nome fantasia"/></div>
-      </div>
-      <div class="field">
-        <label class="field-label">CNAE Principal</label>
-        <div class="field-row"><span class="field-icon"><i class="fas fa-code"></i></span><input class="field-input" type="text" id="inputCnae" placeholder="0000-0/00"/></div>
-      </div>
-      <div class="field">
-        <label class="field-label">Data de Abertura</label>
-        <div class="field-row"><span class="field-icon"><i class="fas fa-calendar"></i></span><input class="field-input" type="date" id="inputAbertura"/></div>
+      <div id="cnpjForm" style="display:none">
+        <div class="field">
+          <label class="field-label">Razão Social</label>
+          <div class="field-row"><span class="field-icon"><i class="fas fa-building"></i></span><input class="field-input" type="text" id="inputRazao" placeholder="Razão social"/></div>
+        </div>
+        <div class="field">
+          <label class="field-label">Nome Fantasia</label>
+          <div class="field-row"><span class="field-icon"><i class="fas fa-store"></i></span><input class="field-input" type="text" id="inputFantasia" placeholder="Nome fantasia"/></div>
+        </div>
+        <div class="field">
+          <label class="field-label">CNAE Principal</label>
+          <div class="field-row"><span class="field-icon"><i class="fas fa-code"></i></span><input class="field-input" type="text" id="inputCnae" placeholder="0000-0/00"/></div>
+        </div>
+        <div class="field">
+          <label class="field-label">Data de Abertura</label>
+          <div class="field-row"><span class="field-icon"><i class="fas fa-calendar"></i></span><input class="field-input" type="date" id="inputAbertura"/></div>
+        </div>
+        <div class="field">
+          <label class="field-label">Endereço</label>
+          <div class="field-row"><span class="field-icon"><i class="fas fa-map-marker-alt"></i></span><input class="field-input" type="text" id="inputEndereco" placeholder="Endereço completo"/></div>
+        </div>
+        <div class="field">
+          <label class="field-label">Situação Cadastral</label>
+          <div class="field-row"><span class="field-icon"><i class="fas fa-check-circle"></i></span><input class="field-input" type="text" id="inputSituacao" readonly style="opacity:.8"/></div>
+        </div>
       </div>
     </div>
     <div class="bottom-bar">
@@ -501,6 +562,14 @@ ul{list-style:none}
 
 <!-- LOGGED AREA -->
 <div class="logged-area" id="loggedArea">
+  <div class="logged-header">
+    <div class="logged-header-inner">
+      <div class="logged-user">
+        <div class="logged-avatar" id="userAvatar">U</div>
+      </div>
+      <button class="logout-btn" onclick="handleLogout()">Sair</button>
+    </div>
+  </div>
   <div class="logged-hero">
     <h1>Bem-vindo ao Portal do Instrumentador!</h1>
     <p>Sua conta está ativa. Explore as oportunidades abaixo.</p>
@@ -539,6 +608,8 @@ let capturedFront = false;
 let capturedBack = false;
 let docType = 'cpf'; // or 'cnpj'
 let selectedGender = '';
+let categoryCount = 0;
+let selectedCategoriesList = []; // Store all selected categories with their subcats
 
 /* ═══ CATEGORIES ═══ */
 const CATEGORIES = [
@@ -582,7 +653,9 @@ function selectCategory(id) {
   selectedCategory = CATEGORIES.find(c => c.id === id);
   selectedSubcats = [];
   document.querySelectorAll('#catGrid .cat-card').forEach(el => {
-    el.classList.toggle('selected', Number(el.dataset.cat) === id);
+    const catId = Number(el.dataset.cat);
+    const alreadySelected = selectedCategoriesList.some(c => c.id === catId);
+    el.classList.toggle('selected', catId === id || alreadySelected);
   });
   renderSubcategories();
 }
@@ -602,6 +675,51 @@ function toggleSubcat(idx, el) {
   el.classList.toggle('selected');
   if (selectedSubcats.includes(idx)) selectedSubcats = selectedSubcats.filter(i => i !== idx);
   else selectedSubcats.push(idx);
+}
+
+function showAddCategoryPrompt() {
+  // Save current category and subcategories
+  if (selectedCategory && selectedSubcats.length > 0) {
+    const existingIdx = selectedCategoriesList.findIndex(c => c.id === selectedCategory.id);
+    if (existingIdx >= 0) {
+      selectedCategoriesList[existingIdx] = { id: selectedCategory.id, name: selectedCategory.name, subcats: [...selectedSubcats] };
+    } else {
+      selectedCategoriesList.push({ id: selectedCategory.id, name: selectedCategory.name, subcats: [...selectedSubcats] });
+    }
+  }
+  
+  // Show prompt
+  document.getElementById('addCatPrompt').style.display = 'block';
+  document.querySelector('#step5 .bottom-bar').style.display = 'none';
+  
+  // Check if limit reached
+  if (selectedCategoriesList.length >= 3) {
+    document.getElementById('limitMsg').style.display = 'block';
+    document.querySelector('.add-cat-btns .btn-primary').disabled = true;
+  } else {
+    document.getElementById('limitMsg').style.display = 'none';
+    document.querySelector('.add-cat-btns .btn-primary').disabled = false;
+  }
+}
+
+function addAnotherCategory(want) {
+  document.getElementById('addCatPrompt').style.display = 'none';
+  document.querySelector('#step5 .bottom-bar').style.display = 'flex';
+  
+  if (want) {
+    categoryCount++;
+    selectedCategory = null;
+    selectedSubcats = [];
+    goStep(4);
+  } else {
+    goStep(6);
+  }
+}
+
+function goBackFromSubcats() {
+  document.getElementById('addCatPrompt').style.display = 'none';
+  document.querySelector('#step5 .bottom-bar').style.display = 'flex';
+  goStep(4);
 }
 
 /* ═══ NAVIGATION ═══ */
@@ -654,7 +772,59 @@ async function fetchCep(cep) {
     document.getElementById('cepCity').value = d.localidade || '';
     document.getElementById('cepState').value = d.uf || '';
     document.getElementById('cepResult').style.display = 'block';
+    
+    // Update region dropdown based on state
+    updateRegionDropdown(d.uf);
   } catch(e) { console.error('CEP error:', e); }
+}
+
+/* ═══ REGIONS DATA ═══ */
+const REGIONS_BY_STATE = {
+  'AC': ['Rio Branco','Vale do Juruá','Vale do Acre','Alto Acre','Alto Purus','Baixo Purus','Tarauacá-Envira','Cruzeiro do Sul'],
+  'AL': ['Maceió','Arapiraca','Santana do Ipanema','Penedo','Palmeira dos Índios','Rio Largo','Marechal Deodoro','União dos Palmares'],
+  'AM': ['Manaus','Tefé','Itacoatiara','Parintins','Coari','Tabatinga','Maués','Rio Preto da Eva'],
+  'AP': ['Macapá','Santana','Laranjal do Jari','Oiapoque','Mazagão','Porto Grande','Pedra Branca do Amapari'],
+  'BA': ['Salvador','Feira de Santana','Vitória da Conquista','Camaçari','Itabuna','Lauro de Freitas','Ilhéus','Jequié','Teixeira de Freitas','Barreiras','Alagoinhas','Porto Seguro'],
+  'CE': ['Fortaleza','Caucaia','Juazeiro do Norte','Maracanaú','Sobral','Crato','Itapipoca','Maranguape','Iguatu','Quixadá','Canindé','Pacatuba'],
+  'DF': ['Asa Norte','Asa Sul','Taguatinga','Ceilândia','Samambaia','Planaltina','Gama','Santa Maria','Recanto das Emas','Guará','Águas Claras','Sobradinho'],
+  'ES': ['Vitória','Vila Velha','Serra','Cariacica','Linhares','Cachoeiro de Itapemirim','Colatina','Guarapari','São Mateus','Aracruz'],
+  'GO': ['Goiânia','Aparecida de Goiânia','Anápolis','Rio Verde','Luziânia','Águas Lindas de Goiás','Valparaíso de Goiás','Trindade','Formosa','Itumbiara'],
+  'MA': ['São Luís','Imperatriz','Timon','Caxias','Codó','Paço do Lumiar','Açailândia','Bacabal','Balsas','Santa Inês'],
+  'MG': ['Belo Horizonte','Uberlândia','Contagem','Juiz de Fora','Betim','Montes Claros','Ribeirão das Neves','Uberaba','Governador Valadares','Ipatinga','Sete Lagoas','Divinópolis','Santa Luzia'],
+  'MS': ['Campo Grande','Dourados','Três Lagoas','Corumbá','Ponta Porã','Aquidauana','Naviraí','Nova Andradina','Maracaju'],
+  'MT': ['Cuiabá','Várzea Grande','Rondonópolis','Sinop','Tangará da Serra','Cáceres','Sorriso','Primavera do Leste','Barra do Garças','Lucas do Rio Verde'],
+  'PA': ['Belém','Ananindeua','Santarém','Marabá','Castanhal','Parauapebas','Altamira','Itaituba','Bragança','Cametá'],
+  'PB': ['João Pessoa','Campina Grande','Santa Rita','Patos','Bayeux','Cabedelo','Sousa','Cajazeiras','Guarabira','Sapê'],
+  'PE': ['Recife','Jaboatão dos Guararapes','Olinda','Caruaru','Petrolina','Paulista','Cabo de Santo Agostinho','Santa Cruz do Capibaribe','Garanhuns','Vitória de Santo Antão'],
+  'PI': ['Teresina','Parnaíba','Picos','Piripiri','Campo Maior','Floriano','Barras','Pedro II','Esperantina','Oeiras'],
+  'PR': ['Curitiba','Londrina','Maringá','Ponta Grossa','Cascavel','Foz do Iguaçu','São José dos Pinhais','Colombo','Guarapuava','Paranaguá','Toledo','Araucária'],
+  'RJ': ['Rio de Janeiro','Niterói','São Gonçalo','Duque de Caxias','Nova Iguaçu','Belford Roxo','Campos dos Goytacazes','Petrópolis','Volta Redonda','Magé','Angra dos Reis','Barra Mansa'],
+  'RN': ['Natal','Mossoró','Parnamirim','São Gonçalo do Amarante','Macaíba','Ceará-Mirim','Caicó','Currais Novos','Açu','João Câmara'],
+  'RO': ['Porto Velho','Ji-Paraná','Ariquemes','Vilhena','Cacoal','Rolim de Moura','Jaru','Guajará-Mirim','Pimenta Bueno'],
+  'RR': ['Boa Vista','Rorainópolis','Caracaraí','Alto Alegre','Mucajaí','Pacaraima','Bonfim','São João da Baliza','São Luiz'],
+  'RS': ['Porto Alegre','Caxias do Sul','Pelotas','Canoas','Santa Maria','Gravataí','Viamão','Novo Hamburgo','São Leopoldo','Rio Grande','Alvorada','Passo Fundo'],
+  'SC': ['Florianópolis','Joinville','Blumenau','São José','Criciúma','Chapecó','Itajaí','Jaraguá do Sul','Lages','Palhoça','Brusque','Tubarão'],
+  'SE': ['Aracaju','Nossa Senhora do Socorro','Lagarto','Itabaiana','São Cristóvão','Estância','Tobias Barreto','Nossa Senhora da Glória'],
+  'SP': ['São Paulo','Campinas','Guarulhos','Osasco','São Bernardo do Campo','Santo André','Ribeirão Preto','São José dos Campos','Sorocaba','Mauá','São José do Rio Preto','Mogi das Cruzes','Piracicaba','Bauru','Santos','Jundiaí','Marília','Presidente Prudente','Franca','Carapicuíba','Diadema','Limeira'],
+  'TO': ['Palmas','Araguaína','Gurupi','Porto Nacional','Paraíso do Tocantins','Colinas do Tocantins','Tocantinópolis','Miracema do Tocantins','Guaraí']
+};
+
+function updateRegionDropdown(state) {
+  const select = document.getElementById('regionSelect');
+  const regions = REGIONS_BY_STATE[state] || [];
+  
+  select.innerHTML = '<option value="">Selecione a região</option>';
+  if (regions.length > 0) {
+    regions.forEach(r => {
+      const opt = document.createElement('option');
+      opt.value = r;
+      opt.textContent = r;
+      select.appendChild(opt);
+    });
+    select.disabled = false;
+  } else {
+    select.disabled = true;
+  }
 }
 
 /* ═══ DOCUMENT (CPF/CNPJ) MASK ═══ */
@@ -675,11 +845,53 @@ function handleDocSubmit() {
   if (docType === 'cpf') {
     document.getElementById('cpfFields').style.display = 'block';
     document.getElementById('meiFields').style.display = 'none';
+    goStep(9);
   } else {
+    // CNPJ - auto-fill from API
     document.getElementById('cpfFields').style.display = 'none';
     document.getElementById('meiFields').style.display = 'block';
+    document.getElementById('cnpjLoading').style.display = 'block';
+    document.getElementById('cnpjForm').style.display = 'none';
+    
+    const cnpj = document.getElementById('inputDoc').value.replace(/\D/g, '');
+    fetchCNPJData(cnpj);
   }
-  goStep(9);
+}
+
+async function fetchCNPJData(cnpj) {
+  try {
+    // Using BrasilAPI for CNPJ lookup
+    const response = await fetch(`https://brasilapi.com.br/api/cnpj/v1/${cnpj}`);
+    const data = await response.json();
+    
+    if (data.erro || !data.razao_social) {
+      // If API fails, show empty form
+      document.getElementById('cnpjLoading').style.display = 'none';
+      document.getElementById('cnpjForm').style.display = 'block';
+      return;
+    }
+    
+    // Fill form with API data
+    document.getElementById('inputRazao').value = data.razao_social || '';
+    document.getElementById('inputFantasia').value = data.nome_fantasia || '';
+    document.getElementById('inputCnae').value = data.cnae_fiscal_descricao || '';
+    document.getElementById('inputEndereco').value = `${data.descricao_tipo_de_logradouro || ''} ${data.logradouro || ''}, ${data.numero || ''} - ${data.bairro || ''}`;
+    document.getElementById('inputSituacao').value = data.descricao_situacao_cadastral || '';
+    
+    if (data.data_inicio_atividade) {
+      const date = new Date(data.data_inicio_atividade);
+      document.getElementById('inputAbertura').value = date.toISOString().split('T')[0];
+    }
+    
+    // Show form
+    document.getElementById('cnpjLoading').style.display = 'none';
+    document.getElementById('cnpjForm').style.display = 'block';
+    
+  } catch(e) {
+    console.error('CNPJ fetch error:', e);
+    document.getElementById('cnpjLoading').style.display = 'none';
+    document.getElementById('cnpjForm').style.display = 'block';
+  }
 }
 
 function selectGender(el, gender) {
@@ -769,9 +981,15 @@ function verifyDoc() {
 
 /* ═══ CELEBRATION / LOGGED AREA ═══ */
 function showLoggedArea() {
+  // Set avatar initial from user name
+  const userName = document.getElementById('inputName').value || 'U';
+  const initial = userName.charAt(0).toUpperCase();
+  document.getElementById('userAvatar').textContent = initial;
+  
   document.getElementById('mainWrap').style.display = 'none';
   document.querySelector('.progress-bar').style.display = 'none';
   document.getElementById('loggedArea').classList.add('active');
+  
   // Show celebration modal
   setTimeout(() => {
     const overlay = document.createElement('div');
@@ -786,6 +1004,44 @@ function showLoggedArea() {
       </div>`;
     document.body.appendChild(overlay);
   }, 600);
+}
+
+function handleLogout() {
+  if (confirm('Deseja realmente sair?')) {
+    // Reset all state
+    currentStep = 1;
+    selectedCategory = null;
+    selectedSubcats = [];
+    pinDigits = ['','','',''];
+    pinActive = 0;
+    capturedFront = false;
+    capturedBack = false;
+    docType = 'cpf';
+    selectedGender = '';
+    categoryCount = 0;
+    selectedCategoriesList = [];
+    
+    // Hide logged area, show registration
+    document.getElementById('loggedArea').classList.remove('active');
+    document.getElementById('mainWrap').style.display = 'flex';
+    document.querySelector('.progress-bar').style.display = 'block';
+    
+    // Go to step 1
+    goStep(1);
+    
+    // Clear all inputs
+    document.querySelectorAll('.field-input').forEach(input => {
+      if (input.type !== 'date') input.value = '';
+    });
+    
+    // Reset checkboxes and selections
+    document.querySelectorAll('.cat-card.selected, .radio-card.selected, .check-box.checked').forEach(el => {
+      el.classList.remove('selected', 'checked');
+    });
+    
+    // Hide CEP result
+    document.getElementById('cepResult').style.display = 'none';
+  }
 }
 
 /* ═══ INIT ═══ */
