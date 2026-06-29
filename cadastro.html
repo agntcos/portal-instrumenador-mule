@@ -690,7 +690,7 @@ function showAddCategoryPrompt() {
   
   // Show prompt
   document.getElementById('addCatPrompt').style.display = 'block';
-  document.querySelector('#step5 .bottom-bar').style.display = 'none';
+  document.querySelector('[data-step="5"] .bottom-bar').style.display = 'none';
   
   // Check if limit reached
   if (selectedCategoriesList.length >= 3) {
@@ -704,7 +704,7 @@ function showAddCategoryPrompt() {
 
 function addAnotherCategory(want) {
   document.getElementById('addCatPrompt').style.display = 'none';
-  document.querySelector('#step5 .bottom-bar').style.display = 'flex';
+  document.querySelector('[data-step="5"] .bottom-bar').style.display = 'flex';
   
   if (want) {
     categoryCount++;
@@ -718,7 +718,7 @@ function addAnotherCategory(want) {
 
 function goBackFromSubcats() {
   document.getElementById('addCatPrompt').style.display = 'none';
-  document.querySelector('#step5 .bottom-bar').style.display = 'flex';
+  document.querySelector('[data-step="5"] .bottom-bar').style.display = 'flex';
   goStep(4);
 }
 
